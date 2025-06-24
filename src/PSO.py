@@ -1,7 +1,10 @@
+import time
 import numpy as np
 from tqdm import tqdm
+from matplotlib.collections import PathCollection
 
 from .benchmark.base import BaseTestFunction
+from .animation.animate import initial_plot, update_points
 
 # Define Global Variables
 total_particles = 50        # Total Number of Particles
@@ -13,6 +16,7 @@ k = 0.2                     # Scaling Factor
 
 def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, verbose=False):
     np.set_printoptions(precision=2)
+    scatter = None
 
     # Initialization
     low, high = function.domain
@@ -26,14 +30,17 @@ def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, verb
     max_velocity = k * (high - low)
     velocities = np.random.uniform(low=(- max_velocity), high=max_velocity, size=(total_particles, dimension))
 
-    pbar = tqdm(range(total_iterations), desc="Progress", dynamic_ncols=True, unit="step")
-    for iteration in pbar:
+    # Initial Plot
+    if verbose:
+        scatter = initial_plot(function, particles)
+        
 
-        # Update the progress bar with more details
-        if verbose:
-            pbar.set_postfix({
-                "Best": global_best
-            })
+    for iteration in tqdm(range(total_iterations), desc="Progress", dynamic_ncols=True, unit="step"):
+
+        # Produce Contour Plot
+        if verbose and type(scatter) == PathCollection:
+            update_points(particles, scatter)
+            time.sleep(0.5)
 
         # Generate the r1 and r2
         r1 = np.random.uniform(size=(total_particles, dimension))

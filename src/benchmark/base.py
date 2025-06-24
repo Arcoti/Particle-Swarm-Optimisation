@@ -6,7 +6,7 @@ class BaseTestFunction(ABC):
     An interface for test functions.
     """
     @abstractmethod
-    def __call__(self, x: ndarray):
+    def __call__(self, x: ndarray) -> ndarray:
         ...
 
     @property
