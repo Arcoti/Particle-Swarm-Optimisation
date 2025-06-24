@@ -17,9 +17,6 @@ class Ackley(BaseTestFunction):
         if x.size != self._n:
             raise ValueError(f"Input dimension {x.size} does not match expected {self._n}")
         
-        if not self.within_domain(x):
-            raise ValueError("Input values does not fall within the expected domain")
-        
         term_one = np.exp( - self._b * np.sqrt( np.sum(x**2) / x.size ) )
         term_two = np.exp( np.sum( np.cos(self._c * x) ) / x.size )
         

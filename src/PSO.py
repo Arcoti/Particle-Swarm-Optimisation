@@ -57,4 +57,5 @@ def find_global_best(particles: np.ndarray, function: BaseTestFunction):
 def update_particle_best(particles: np.ndarray, particles_best: np.ndarray, function: BaseTestFunction):
     current_values = np.apply_along_axis(function, axis=1, arr=particles)
     best_values = np.apply_along_axis(function, axis=1, arr=particles_best)
-    return np.where(best_values <= current_values, particles_best, particles)
+    mask = best_values <= current_values
+    return np.where(mask[:, None], particles_best, particles)

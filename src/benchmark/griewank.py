@@ -16,9 +16,6 @@ class Griewank(BaseTestFunction):
         if x.size != self._n:
             raise ValueError(f"Input dimension {x.size} does not match expected {self._n}")
         
-        if not self.within_domain(x):
-            raise ValueError("Input values does not fall within the expected domain")
-        
         i = np.sqrt( np.arange(1, x.size + 1) )
         term_one = ( 1 / self._b ) * np.sum( x**2 )
         term_two = np.prod( np.cos( x / i ))

@@ -14,9 +14,6 @@ class Sphere(BaseTestFunction):
     def __call__(self, x: np.ndarray):
         if x.size != self._n:
             raise ValueError(f"Input dimension {x.size} does not match expected {self._n}")
-        
-        if not self.within_domain(x):
-            raise ValueError("Input values does not fall within the expected domain")
 
         return np.sum( x** 2 )
     

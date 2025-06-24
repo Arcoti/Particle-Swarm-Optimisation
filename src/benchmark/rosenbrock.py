@@ -16,9 +16,6 @@ class Rosenbrock(BaseTestFunction):
         if x.size != self._n:
             raise ValueError(f"Input dimension {x.size} does not match expected {self._n}")
         
-        if not self.within_domain(x):
-            raise ValueError("Input values does not fall within the expected domain")
-        
         return np.sum(self._a * (x[1:] - x[:-1]**2)**2 + (1 - x[:-1])**2)
     
     @property
