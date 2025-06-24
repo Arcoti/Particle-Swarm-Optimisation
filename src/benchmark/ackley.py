@@ -35,3 +35,4 @@ class Ackley(BaseTestFunction):
     
     def within_domain(self, x: np.ndarray):
         return np.all( (x >= self._domain[0]) & (x <= self._domain[1]))
+    

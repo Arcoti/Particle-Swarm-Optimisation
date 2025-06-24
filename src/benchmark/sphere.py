@@ -10,7 +10,7 @@ class Sphere(BaseTestFunction):
     def __init__(self, n: int, domain: tuple[float, float] = (-5.12, 5.12)):
         self._n = n
         self._domain = domain
-    
+
     def __call__(self, x: np.ndarray):
         if x.size != self._n:
             raise ValueError(f"Input dimension {x.size} does not match expected {self._n}")
@@ -30,3 +30,4 @@ class Sphere(BaseTestFunction):
     
     def within_domain(self, x: np.ndarray):
         return np.all ( (x >= self._domain[0]) & (x <= self._domain[1]) )
+    

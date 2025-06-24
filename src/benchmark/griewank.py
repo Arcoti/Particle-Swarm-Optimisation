@@ -32,3 +32,4 @@ class Griewank(BaseTestFunction):
     
     def within_domain(self, x):
         return np.all( (x >= self._domain[0]) & (x <= self._domain[1] ) )
+    
