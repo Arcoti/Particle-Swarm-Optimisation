@@ -14,6 +14,11 @@ class BaseTestFunction(ABC):
     def __call__(self, x: ndarray):
         ...
 
+    @property
+    @abstractmethod
+    def domain(self) -> tuple[float, float]:
+        ...
+
     @abstractmethod
     def within_domain(self, x: ndarray) -> bool:
         ...
