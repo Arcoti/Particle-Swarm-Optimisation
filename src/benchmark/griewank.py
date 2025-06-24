@@ -3,6 +3,9 @@ import numpy as np
 from .base import BaseTestFunction
 
 class Griewank(BaseTestFunction):
+    """
+    The Griewank Function.
+    """
     def __init__(self, n: int, a: int = 1, b: int = 4000, domain: tuple[float, float] = (-600, 600)):
         self._a = a
         self._b = b
