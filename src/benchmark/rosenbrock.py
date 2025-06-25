@@ -7,7 +7,7 @@ class Rosenbrock(BaseTestFunction):
     The Rosenbrock Function.
     """
 
-    def __init__(self, n: int, a: int = 100, domain: tuple[float, float] = (-5, 10)):
+    def __init__(self, n: int, a: int = 100, domain: tuple[float, float] = (-5, 5)):
         self._a = a
         self._n = n
         self._domain = domain

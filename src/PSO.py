@@ -40,7 +40,7 @@ def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, verb
         # Produce Contour Plot
         if verbose and type(scatter) == PathCollection:
             update_points(particles, scatter)
-            time.sleep(0.5)
+            time.sleep(0.2)
 
         # Generate the r1 and r2
         r1 = np.random.uniform(size=(total_particles, dimension))
