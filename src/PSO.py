@@ -11,7 +11,7 @@ total_particles = 50        # Total Number of Particles
 total_iterations = 100      # Total Number of Iterations
 
 w_max, w_min = 0.9, 0.2     # Inertia Weight
-c1, c2 = 2, 2               # Standard Coefficent
+c1, c2 = 1.5, 1.5           # Standard Coefficent
 k = 0.2                     # Scaling Factor
 
 def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, animate=False):
@@ -30,7 +30,7 @@ def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, anim
         Whether to show the animation of the optimisation. Only works when dimension = 2. 
         Default is False. 
     """
-    if validate_animate(dimension, animate):
+    if not validate_animate(dimension, animate):
         raise ValueError(f"Animation cannot occur when dimension not equals 2")
 
     np.set_printoptions(precision=2)

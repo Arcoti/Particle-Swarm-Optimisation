@@ -1,8 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.collections import PathCollection
+from matplotlib.animation import FuncAnimation
 
 from ..benchmark.base import BaseTestFunction
+
+# Global Array to store particle values.
+particles_against_time = []
 
 fig, ax = plt.subplots()
 
@@ -32,6 +36,7 @@ def initial_plot(function: BaseTestFunction, particles: np.ndarray):
     return scatter
 
 def update_points(particles: np.ndarray, scatter: PathCollection):
+    particles_against_time.append(particles)
     scatter.set_offsets(particles)
     fig.canvas.draw()
     fig.canvas.flush_events()
@@ -39,3 +44,18 @@ def update_points(particles: np.ndarray, scatter: PathCollection):
 def interactive_off():
     plt.ioff()
     plt.show()
+
+# Creation of Animation
+# ---------------------
+
+def animation_update(frame: int, scatter: PathCollection):
+    scatter.set_offsets(particles_against_time[frame + 1])
+    return scatter, # Returns as a tuple
+
+def create_animation(function: BaseTestFunction):
+    if particles_against_time == []:
+        raise ValueError("No data collected for animation to run")
+    
+    scatter = initial_plot(function, particles_against_time[0])
+    ani = FuncAnimation(fig, animation_update, frames=99, fargs=(scatter, ), interval=50, blit=True)
+    ani.save('./media/animation.gif', fps=30)
