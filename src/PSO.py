@@ -15,6 +15,24 @@ c1, c2 = 2, 2               # Standard Coefficent
 k = 0.2                     # Scaling Factor
 
 def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, animate=False):
+    """
+    Particle Swarm Optimisation. 
+    
+    Parameters
+    ----------
+    dimension : int
+        The dimension of the function
+    
+    function : BaseTestFunction
+        The function to optimise
+
+    animate : bool
+        Whether to show the animation of the optimisation. Only works when dimension = 2. 
+        Default is False. 
+    """
+    if validate_animate(dimension, animate):
+        raise ValueError(f"Animation cannot occur when dimension not equals 2")
+
     np.set_printoptions(precision=2)
     scatter = None
 
@@ -39,6 +57,7 @@ def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, anim
         # Produce Contour Plot
         if animate and type(scatter) == PathCollection:
             update_points(particles, scatter)
+            # Introduce a Gap to allow visualization of the particles state
             time.sleep(0.2)
 
         # Generate the r1 and r2
@@ -63,12 +82,27 @@ def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, anim
     return global_best
 
 def find_global_best(particles: np.ndarray, function: BaseTestFunction):
+    """
+    From the array of all particles' best position, evaluate their values base on the function.
+    Then, find the minimum of the value and retrieve its position, becoming global best position. 
+    """
     values = np.apply_along_axis(function, axis=1, arr=particles)
     min_index = np.argmin(values)
     return particles[min_index]
 
 def update_particle_best(particles: np.ndarray, particles_best: np.ndarray, function: BaseTestFunction):
+    """
+    From an array of current positions and particles' best positions, find their corresonpding values. 
+    Depending on their values, find the minimum and update the position as particle's best. 
+    """
     current_values = np.apply_along_axis(function, axis=1, arr=particles)
     best_values = np.apply_along_axis(function, axis=1, arr=particles_best)
     mask = best_values <= current_values
     return np.where(mask[:, None], particles_best, particles)
+
+def validate_animate(dimension: int, animate: bool):
+    """
+    Returns True if dimension == 2 and animate == True. 
+    Returns False otherwise. 
+    """
+    return dimension == 2 if animate else True
