@@ -67,7 +67,7 @@ def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, anim
         w = w_max - ((w_max - w_min) / total_iterations) * iteration
 
         # Update the particle's position
-        velocities = w * velocities + c1 * r1 * (particles_best - particles) + c2 * r2 * (global_best - particles)
+        velocities = np.clip((w * velocities + c1 * r1 * (particles_best - particles) + c2 * r2 * (global_best - particles)), -max_velocity, max_velocity)
         particles = particles + velocities
 
         # Update particle and global best
