@@ -16,7 +16,7 @@ class Michalewicz(BaseTestFunction):
             raise ValueError(f"Input dimension {x.size} does not match expected {self._n}")
         
         i = np.arange(1, x.size + 1)
-        return - np.sum( np.sin(x) * ( np.sin((i * x**2) / np.pi) )**self._m )
+        return - np.sum( np.sin(x) * ( np.sin((i * x**2) / np.pi) )** (2 * self._m) )
     
     @property
     def global_minimum(self):
