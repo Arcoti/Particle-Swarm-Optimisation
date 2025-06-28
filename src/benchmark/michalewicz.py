@@ -6,7 +6,8 @@ class Michalewicz(BaseTestFunction):
     """
     The Michalewicz Function.
     """
-    def __init__(self, n: int, domain: tuple[float, float] = (0, np.pi)):
+    def __init__(self, n: int, m: int = 10, domain: tuple[float, float] = (0, np.pi)):
+        self._m = m
         self._n = n
         self._domain = domain
 
@@ -15,7 +16,7 @@ class Michalewicz(BaseTestFunction):
             raise ValueError(f"Input dimension {x.size} does not match expected {self._n}")
         
         i = np.arange(1, x.size + 1)
-        return - np.sum( np.sin(x) * ( np.sin((i * x**2) / np.pi) )**2 )
+        return - np.sum( np.sin(x) * ( np.sin((i * x**2) / np.pi) )**self._m )
     
     @property
     def global_minimum(self):
