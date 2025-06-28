@@ -10,11 +10,11 @@ from .animation.animate import initial_plot, update_points
 total_particles = 50        # Total Number of Particles
 total_iterations = 100      # Total Number of Iterations
 
-w = 0.659                   # Inertia Weight
+w_max, w_min = 0.9, 0.2     # Inertia Weight
 c1, c2 = 2, 2               # Standard Coefficent
 k = 0.2                     # Scaling Factor
 
-def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, verbose=False):
+def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, animate=False):
     np.set_printoptions(precision=2)
     scatter = None
 
@@ -31,20 +31,22 @@ def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, verb
     velocities = np.random.uniform(low=(- max_velocity), high=max_velocity, size=(total_particles, dimension))
 
     # Initial Plot
-    if verbose:
+    if animate:
         scatter = initial_plot(function, particles)
-        
 
     for iteration in tqdm(range(total_iterations), desc="Progress", dynamic_ncols=True, unit="step"):
 
         # Produce Contour Plot
-        if verbose and type(scatter) == PathCollection:
+        if animate and type(scatter) == PathCollection:
             update_points(particles, scatter)
             time.sleep(0.2)
 
         # Generate the r1 and r2
         r1 = np.random.uniform(size=(total_particles, dimension))
         r2 = np.random.uniform(size=(total_particles, dimension))
+
+        # Get Inertia Weight 
+        w = w_max - ((w_max - w_min) / total_iterations) * iteration
 
         # Update the particle's position
         velocities = w * velocities + c1 * r1 * (particles_best - particles) + c2 * r2 * (global_best - particles)
