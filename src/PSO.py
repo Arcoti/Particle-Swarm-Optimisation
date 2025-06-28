@@ -57,8 +57,7 @@ def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, anim
         # Produce Contour Plot
         if animate and type(scatter) == PathCollection:
             update_points(particles, scatter)
-            # Introduce a Gap to allow visualization of the particles state
-            time.sleep(0.2)
+            time.sleep(0.2) # Introduce a Gap to allow visualization of the particles state
 
         # Generate the r1 and r2
         r1 = np.random.uniform(size=(total_particles, dimension))
