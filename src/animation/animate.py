@@ -35,3 +35,7 @@ def update_points(particles: np.ndarray, scatter: PathCollection):
     scatter.set_offsets(particles)
     fig.canvas.draw()
     fig.canvas.flush_events()
+
+def interactive_off():
+    plt.ioff()
+    plt.show()

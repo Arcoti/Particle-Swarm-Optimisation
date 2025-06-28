@@ -4,7 +4,7 @@ from tqdm import tqdm
 from matplotlib.collections import PathCollection
 
 from .benchmark.base import BaseTestFunction
-from .animation.animate import initial_plot, update_points
+from .animation.animate import initial_plot, update_points, interactive_off
 
 # Define Global Variables
 total_particles = 50        # Total Number of Particles
@@ -55,6 +55,10 @@ def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, anim
         # Update particle and global best
         particles_best = update_particle_best(particles, particles_best, function)
         global_best = find_global_best(particles_best, function)
+    
+    # Turn of interactive mode
+    if animate:
+        interactive_off()
     
     return global_best
 
