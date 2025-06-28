@@ -4,6 +4,6 @@ from .animation.animate import create_animation
 
 if __name__ == "__main__":
     n = 2
-    result = particle_swarm_optimisation(n, Rastrigin(n), animate=False)
-    create_animation(Rastrigin(n))
+    result = particle_swarm_optimisation(n, Sphere(n), animate=True)
+    create_animation(Sphere(n))
     print(result)
