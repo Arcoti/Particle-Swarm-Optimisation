@@ -26,7 +26,7 @@ def evaluate_main(n: int = 2):
         evaluate_pso(n, function, average_loss=True)
         plot_average_loss(function)
 
-def success_main(n_start: int = 2, n_end: int = 20):
+def success_main(n_start: int = 2, n_end: int = 10):
     to_plot = {}
 
     for n in tqdm(range(n_start, n_end + 1), desc="Dimension Progress", dynamic_ncols=True, unit="step"):

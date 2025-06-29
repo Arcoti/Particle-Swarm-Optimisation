@@ -44,6 +44,9 @@ def plot_success(data: dict, n_start: int, n_end: int):
     plt.ylabel("Dimensions")
     plt.title("Number of Success against Dimensions")
 
+    plt.xlim(0, 500)
+    plt.ylim(2, 10)
+
     plt.grid(True)
     plt.legend()
     plt.savefig(f'./media/graphs/success.png')
