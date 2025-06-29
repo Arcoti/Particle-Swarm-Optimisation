@@ -37,7 +37,7 @@ def plot_average_loss(function: BaseTestFunction, iterations: int = 100):
 def plot_success(data: dict, n_start: int, n_end: int):
     x = range(n_start, n_end + 1)
 
-    for key, value in data:
+    for key, value in data.items():
         plt.plot(x, value, label=key)
 
     plt.xlabel("Number of Successes")

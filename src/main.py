@@ -29,15 +29,15 @@ def evaluate_main(n: int = 2):
 def success_main(n_start: int = 2, n_end: int = 20):
     to_plot = {}
 
-    for n in tqdm(range(n_start, n_end + 1), desc="Progress", dynamic_ncols=True, unit="step"):
+    for n in tqdm(range(n_start, n_end + 1), desc="Dimension Progress", dynamic_ncols=True, unit="step"):
         functions = [Ackley(n), Griewank(n), Michalewicz(n), Rastrigin(n), Rosenbrock(n), Sphere(n)]
 
         for function in functions:
             matches = []
 
-            for i in range(500):
+            for i in tqdm(range(500), desc="Trials Progress", leave=False, dynamic_ncols=True, unit="step"):
                 result = evaluate_pso(n, function, verbose=False)
-                matches.append(1 if match(result, function) else 0)
+                matches.append(1 if match(function, result) else 0)
 
             total = sum(matches)
 
@@ -58,4 +58,4 @@ def main(n: int):
         particle_swarm_optimisation(n, function)
 
 if __name__ == "__main__":
-    evaluate_main(10)
+    success_main()
