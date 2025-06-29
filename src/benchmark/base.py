@@ -14,6 +14,11 @@ class BaseTestFunction(ABC):
     def domain(self) -> tuple[float, float]:
         ...
 
+    @property
+    @abstractmethod
+    def global_minimum(self) -> tuple[ndarray, int]:
+        ...
+
     @abstractmethod
     def within_domain(self, x: ndarray) -> bool:
         ...

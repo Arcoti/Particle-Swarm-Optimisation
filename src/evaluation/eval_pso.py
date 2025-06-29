@@ -1,6 +1,7 @@
 import numpy as np
 from tqdm import tqdm
 
+from .evaluate import normalized_average_loss
 from ..benchmark.base import BaseTestFunction
 
 # Define Global Variables
@@ -11,7 +12,7 @@ w_max, w_min = 0.9, 0.2     # Inertia Weight
 c1, c2 = 1.5, 1.5           # Standard Coefficent
 k = 0.2                     # Scaling Factor
 
-def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, animate=False):
+def evaluate_pso(dimension: int, function: BaseTestFunction, average_loss=False):
     np.set_printoptions(precision=2)
 
     # Initialization
@@ -42,6 +43,10 @@ def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, anim
         # Update particle and global best
         particles_best = update_particle_best(particles, particles_best, function)
         global_best = find_global_best(particles_best, function)
+
+        # Evaluate Average Loss for subsequent iterations
+        if average_loss:
+            normalized_average_loss(particles, function)
     
     return global_best
 
