@@ -18,9 +18,9 @@ $$
 f_{Griewank}(x) = 1 + \frac{1}{4000} \sum_{i = 1}^{n} {x_{i}^{2}} - \prod_{i = 1}^{n} {\cos \frac{x_{i}}{\sqrt{i}}}
 $$
 
-| ![Griewank PSO gif](./media/griewank.gif)                         |
-| ------------------------------------------------------------------|
-| Griewank Particle Swarm Optimisation in the 2-dimensional space   |
+| ![Griewank PSO gif](./media/griewank.gif)                       |
+| ----------------------------------------------------------------|
+| Griewank Particle Swarm Optimisation in the 2-dimensional space |
 
 ### Michalewicz
 $$

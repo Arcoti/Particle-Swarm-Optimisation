@@ -52,10 +52,10 @@ def animation_update(frame: int, scatter: PathCollection):
     scatter.set_offsets(particles_against_time[frame + 1])
     return scatter, # Returns as a tuple
 
-def create_animation(function: BaseTestFunction):
+def create_animation(function: BaseTestFunction, filePath = './media/animation.gif'):
     if particles_against_time == []:
         raise ValueError("No data collected for animation to run")
     
     scatter = initial_plot(function, particles_against_time[0])
     ani = FuncAnimation(fig, animation_update, frames=99, fargs=(scatter, ), interval=50, blit=True)
-    ani.save('./media/animation.gif', fps=30)
+    ani.save(filePath, fps=30)

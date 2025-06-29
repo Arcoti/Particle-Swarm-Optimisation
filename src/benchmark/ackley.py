@@ -12,6 +12,7 @@ class Ackley(BaseTestFunction):
         self._c = c
         self._n = n
         self._domain = domain
+        self._name = "Ackley"
 
     def __call__(self, x: np.ndarray):
         if x.size != self._n:

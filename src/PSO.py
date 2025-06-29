@@ -14,7 +14,7 @@ w_max, w_min = 0.9, 0.2     # Inertia Weight
 c1, c2 = 1.5, 1.5           # Standard Coefficent
 k = 0.2                     # Scaling Factor
 
-def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, animate=False):
+def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, animate=False, persist=True):
     """
     Particle Swarm Optimisation. 
     
@@ -29,6 +29,10 @@ def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, anim
     animate : bool
         Whether to show the animation of the optimisation. Only works when dimension = 2. 
         Default is False. 
+    
+    persist : bool
+        Whether to show the animation of the optimisation after it ends. 
+        Default is True. 
     """
     if not validate_animate(dimension, animate):
         raise ValueError(f"Animation cannot occur when dimension not equals 2")
@@ -75,7 +79,7 @@ def particle_swarm_optimisation(dimension: int, function: BaseTestFunction, anim
         global_best = find_global_best(particles_best, function)
     
     # Turn of interactive mode
-    if animate:
+    if animate and persist:
         interactive_off()
     
     return global_best
