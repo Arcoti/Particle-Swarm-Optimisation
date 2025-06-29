@@ -12,7 +12,7 @@ w_max, w_min = 0.9, 0.2     # Inertia Weight
 c1, c2 = 1.5, 1.5           # Standard Coefficent
 k = 0.2                     # Scaling Factor
 
-def evaluate_pso(dimension: int, function: BaseTestFunction, average_loss=False):
+def evaluate_pso(dimension: int, function: BaseTestFunction, verbose=True, average_loss=False):
     np.set_printoptions(precision=2)
 
     # Initialization
@@ -27,7 +27,8 @@ def evaluate_pso(dimension: int, function: BaseTestFunction, average_loss=False)
     max_velocity = k * (high - low)
     velocities = np.random.uniform(low=(- max_velocity), high=max_velocity, size=(total_particles, dimension))
 
-    for iteration in tqdm(range(total_iterations), desc="Progress", dynamic_ncols=True, unit="step"):
+    pbar = tqdm(range(total_iterations), desc="Progress", dynamic_ncols=True, unit="step") if verbose else range(total_iterations)
+    for iteration in pbar:
 
         # Generate the r1 and r2
         r1 = np.random.uniform(size=(total_particles, dimension))
@@ -44,7 +45,7 @@ def evaluate_pso(dimension: int, function: BaseTestFunction, average_loss=False)
         particles_best = update_particle_best(particles, particles_best, function)
         global_best = find_global_best(particles_best, function)
 
-        # Evaluate Average Loss for subsequent iterations
+        # Evaluate Average Loss
         if average_loss:
             normalized_average_loss(particles, function)
     
