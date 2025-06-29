@@ -29,8 +29,7 @@ def plot_average_loss(function: BaseTestFunction, iterations: int = 100):
     plt.title(f"{function.__class__.__name__} - Average Loss over Iterations")
 
     plt.grid(True)
-    plt.show()
-
     plt.savefig(f'./media/graphs/{function.__class__.__name__}.png')
+    plt.show()
 
     average_loss_over_time = []

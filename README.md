@@ -57,6 +57,55 @@ $$
 f_{Sphere}(x) = \sum_{i=1}^{n} {x_{i}^{2}}
 $$
 
-| ![Sphere PSO gif](./media/gif/sphere.gif)                        |
+| ![Sphere PSO gif](./media/gif/sphere.gif)                    |
 | -------------------------------------------------------------|
 | Sphere Particle Swarm Optimisation in the 2-dimensional space|
+
+## Evaluate
+The algorithm is evaluated against two criteria: 
+
+1) Average Loss
+
+Average Loss is calculated as follows $\overline{f(p)} - f(global_{min})$ where $p$ is the particle's current position and $global_{min}$ is the technical global minimum of the function. 
+
+The graphs shown are all in the 10 Dimensional Space.
+
+### Ackley
+
+| ![Ackley Average Loss Graph](./media/graphs/Ackley.png)        |
+| ---------------------------------------------------------------|
+| Ackley Average Loss in the 10 Dimensional Space over Iterations|
+
+### Griewank
+
+| ![Griewank Average Loss Graph](./media/graphs/Griewank.png)      |
+| -----------------------------------------------------------------|
+| Griewank Average Loss in the 10 Dimensional Space over Iterations|
+
+### Michalewicz
+
+| ![Michalewicz Average Loss Graph](./media/graphs/Michalewicz.png)   |
+| --------------------------------------------------------------------|
+| Michalewicz Average Loss in the 10 Dimensional Space over Iterations|
+
+### Rastrigin
+
+| ![Rastrigin Average Loss Graph](./media/graphs/Rastrigin.png)     |
+| ------------------------------------------------------------------|
+| Rastrigin Average Loss in the 10 Dimensional Space over Iterations|
+
+### Rosenbrock
+
+| ![Rosenbrock Average Loss Graph](./media/graphs/Rosenbrock.png)    |
+| -------------------------------------------------------------------|
+| Rosenbrock Average Loss in the 10 Dimensional Space over Iterations|
+
+### Sphere
+
+| ![Sphere Average Loss Graph](./media/graphs/Sphere.png)        |
+| ---------------------------------------------------------------|
+| Sphere Average Loss in the 10 Dimensional Space over Iterations|
+
+2) Number of Successes
+
+
