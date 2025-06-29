@@ -66,7 +66,7 @@ The algorithm is evaluated against two criteria:
 
 1) Average Loss
 
-Average Loss is calculated as follows $\overline{f(p)} - f(global_{min})$ where $p$ is the particle's current position and $global_{min}$ is the technical global minimum of the function. 
+Average Loss is calculated as follows $\overline{f(p)} - f(global_{min})$ where $p$ is a particle's current position and $global_{min}$ is the technical global minimum of the function. 
 
 The graphs shown are all in the 10 Dimensional Space.
 
