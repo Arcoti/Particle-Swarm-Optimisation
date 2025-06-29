@@ -108,4 +108,6 @@ The graphs shown are all in the 10 Dimensional Space.
 
 2) Number of Successes
 
+The number of successes is evaluated base on how close the global best position of the terminated particle swarm optimisation is to the technical global minimum of the function. The condition is rather harsh, having used the NumPy `allclose` function to evaluate the closeness of the final position to the actual position. The result is shown in the graph below:
 
+![Success Against Dimensions](./media/graphs/success.png)
