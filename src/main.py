@@ -58,4 +58,4 @@ def main(n: int):
         particle_swarm_optimisation(n, function)
 
 if __name__ == "__main__":
-    success_main()
+    main(2)
