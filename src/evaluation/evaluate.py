@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 
 from ..benchmark.base import BaseTestFunction
 
-multiple_functions = {}
 average_loss_over_time = []
 
 def match(function: BaseTestFunction, global_best: np.ndarray, rtol=1e-05, atol=1e-08):
@@ -18,23 +17,20 @@ def normalized_average_loss(particles: np.ndarray, function: BaseTestFunction):
     nal = average_loss(particles, function) - value
     average_loss_over_time.append(nal)
 
-def store(function: BaseTestFunction):
-    global average_loss_over_time, multiple_functions
-
-    multiple_functions[function.__class__.__name__] = average_loss_over_time
-    average_loss_over_time = []
-
-def plot_average_loss(iterations: int = 100):
+def plot_average_loss(function: BaseTestFunction, iterations: int = 100):
+    global average_loss_over_time
     x = range(1, iterations + 1)
+    y = average_loss_over_time
 
-    for key, value in multiple_functions.items():
-        print(key, value)
-        plt.plot(x, value, label=key)
+    plt.plot(x, y)
     
     plt.xlabel("Normalized Average Loss")
     plt.ylabel("Iterations")
-    plt.title("Normalized Average Loss Over Iterations")
-    plt.legend()
+    plt.title(f"{function.__class__.__name__} - Average Loss over Iterations")
 
     plt.grid(True)
     plt.show()
+
+    plt.savefig(f'./media/graphs/{function.__class__.__name__}.png')
+
+    average_loss_over_time = []

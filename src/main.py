@@ -2,7 +2,7 @@ from .benchmark import *
 from .PSO import particle_swarm_optimisation
 from .animation.animate import create_animation
 from .evaluation.eval_pso import evaluate_pso
-from .evaluation.evaluate import store, plot_average_loss
+from .evaluation.evaluate import plot_average_loss
 
 def animate_main(n: int = 2):
     """
@@ -22,9 +22,7 @@ def evaluate_main(n: int = 2):
 
     for function in functions:
         evaluate_pso(n, function, average_loss=True)
-        store(function)
-
-    plot_average_loss()
+        plot_average_loss(function)
 
 def main(n: int):
     """
